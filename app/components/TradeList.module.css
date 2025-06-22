@@ -1,0 +1,36 @@
+/* TradeList.module.css */
+
+.tradeItem {
+  max-width: 600px; /* 이 요소가 최대 600px까지만 너비를 차지하도록 제한 (브라우저 전체 너비를 다 먹지 않게 함) */
+  /* margin: 0 auto; */ /* (주석 처리됨) 좌우 여백을 자동으로 설정해 가운데 정렬함. 필요 시 주석 해제 */
+
+  padding: 4px 12px; /* 위아래 4px, 좌우 12px 여백을 줌 (내용물과 테두리 사이 공간 확보) */
+
+  border-bottom: 1px solid #2a2a2a; /* 아래쪽에 어두운 회색 실선 추가해서 항목 구분 */
+
+  color: #e0e0e0; /* 글자색을 밝은 회색으로 지정 (다크모드에 잘 어울림) */
+
+  display: flex; /* 내부 요소들을 가로로 나열하는 Flexbox 컨테이너로 설정 */
+
+  flex-wrap: wrap; /* 내부 요소들이 한 줄에 다 안 들어갈 경우 자동으로 다음 줄로 넘어가도록 허용 */
+
+  gap: 8px 16px; /* 내부 항목들 간의 간격 설정: 행 간격 8px, 열 간격 16px */
+
+  font-family: monospace; /* 글꼴을 고정폭 글꼴로 설정 (코드 느낌, 숫자 정렬에 좋음) */
+}
+
+.colPrice {
+  min-width: 140px;
+}
+
+.colQuantity {
+  min-width: 140px;
+}
+
+.colTime {
+  min-width: 120px;
+}
+
+.colType {
+  min-width: 120px;
+}
