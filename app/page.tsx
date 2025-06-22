@@ -1,3 +1,4 @@
+// /에 매핑되는 기본 페이지
 import Image from "next/image";
 
 export default function Home() {

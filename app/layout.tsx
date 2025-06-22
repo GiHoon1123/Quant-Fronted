@@ -1,3 +1,4 @@
+// 모든 페이지에 공통 적용되는 레이아웃
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
