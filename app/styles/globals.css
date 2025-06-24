@@ -24,3 +24,20 @@ h1 {
   color: #ffffff;
   margin-bottom: 1rem;
 }
+
+.main-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 20px;
+  color: white;
+}
+
+.trade-section {
+  flex: 1;
+}
+
+.chart-section {
+  flex: 2;
+  margin-bottom: 40px;
+}

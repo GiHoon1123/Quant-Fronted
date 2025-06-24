@@ -34,3 +34,95 @@
 .colType {
   min-width: 120px;
 }
+
+.splitContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #ffffff;
+  padding-left: 12px;
+}
+
+.tradeList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 640px; /* 32px * 20줄 */
+  overflow-y: hidden;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 13px;
+  color: #e0e0e0;
+}
+
+/* ✅ 고정된 표 형식 그리드 레이아웃 */
+.tradeItem {
+  height: 32px;
+  display: grid;
+  grid-template-columns: 120px 100px 130px 60px; /* ✅ 넉넉한 열 간격 */
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid #2a2a2a;
+  box-sizing: border-box;
+}
+
+/* ✅ 빈 줄도 동일하게 처리 */
+.tradeItemEmpty {
+  height: 32px;
+  display: grid;
+  grid-template-columns: 120px 100px 130px 60px;
+  padding: 0 12px;
+  border-bottom: 1px solid #2a2a2a;
+  box-sizing: border-box;
+}
+
+.colPrice,
+.colQuantity,
+.colTime,
+.colType {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 정렬 */
+.colPrice {
+  text-align: right;
+  padding-right: 4px;
+}
+
+.colQuantity {
+  text-align: right;
+  padding-right: 4px;
+}
+
+.colTime {
+  text-align: center;
+}
+
+.colType {
+  text-align: center;
+}
+
+.red {
+  color: #ff4c4c;
+}
+
+.green {
+  color: #00ffae;
+}
+
+.sellSection {
+  border-bottom: 2px solid #444;
+  padding-bottom: 8px;
+}
+
+.buySection {
+  padding-top: 8px;
+}
