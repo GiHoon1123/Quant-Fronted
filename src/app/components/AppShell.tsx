@@ -7,6 +7,7 @@ import SlidePanel from "./SlidePanel";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [panelOpen, setPanelOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // 메뉴 슬라이드 상태
 
   return (
     <>
@@ -17,7 +18,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <div
         className={`transition-all duration-300 ${panelOpen ? "mr-64" : ""}`}
       >
-        <Header />
+        <Header
+          isMenuOpen={menuOpen}
+          onToggleMenu={() => setMenuOpen((prev) => !prev)}
+        />
         <main className="pr-16 pt-4">{children}</main>
       </div>
     </>

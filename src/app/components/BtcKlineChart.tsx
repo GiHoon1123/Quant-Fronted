@@ -14,7 +14,7 @@ type Props = {
   klineData: Candle[];
 };
 
-export default function KlineChart({ klineData }: Props) {
+export default function BtcKlineChart({ klineData }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const seriesRef = useRef<ReturnType<

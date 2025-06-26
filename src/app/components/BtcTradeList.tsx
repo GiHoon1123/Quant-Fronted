@@ -1,7 +1,7 @@
 "use client";
 
 import { Trade } from "../types/trade";
-import styles from "./TradeList.module.css";
+import styles from "./BtcTradeList.module.css";
 
 type Props = {
   buyTrades: Trade[];
@@ -15,7 +15,7 @@ function paddedList(list: Trade[]): (Trade | null)[] {
   return [...Array(emptyCount).fill(null), ...list];
 }
 
-export default function TradeList({ buyTrades, sellTrades }: Props) {
+export default function BtcTradeList({ buyTrades, sellTrades }: Props) {
   return (
     <div className={styles.splitContainer}>
       {/* Sell Section */}
