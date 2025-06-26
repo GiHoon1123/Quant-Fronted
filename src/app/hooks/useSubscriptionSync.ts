@@ -27,9 +27,9 @@ export function useSubscriptionSync({
 
       try {
         const res = await axios.get(
-          "http://localhost:3000/market-data/trade/subscribed"
+          "http://localhost:3000/market-data/watchlist"
         );
-        const newSymbols: string[] = res.data.data;
+        const newSymbols: string[] = res.data.data.symbols;
 
         console.log("✅ [서버 응답] 구독 중인 심볼 목록:", newSymbols);
 

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   background-color: #1e1e1e;
   color: #cccccc;
@@ -40,4 +44,9 @@ h1 {
 .chart-section {
   flex: 2;
   margin-bottom: 40px;
+}
+
+body {
+  @apply bg-[#0e0e0e] text-gray-200;
+  font-family: "Roboto", "Arial", sans-serif;
 }

@@ -1,5 +1,3 @@
-// app/types/kline.ts
-
 export type Kline = {
   symbol: string;
   interval: string;
