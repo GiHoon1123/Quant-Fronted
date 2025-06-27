@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
   isMenuOpen: boolean;
@@ -9,17 +10,17 @@ type Props = {
 
 export default function Header({ isMenuOpen, onToggleMenu }: Props) {
   return (
-    <header className="grid grid-cols-3 items-center px-4 py-3 pr-20">
+    <header className="relative grid grid-cols-3 items-center px-4 py-3 pr-20 text-lg font-medium text-white">
       {/* 왼쪽: 로고 */}
       <Link
         href="/"
-        className="text-2xl font-bold whitespace-nowrap hover:opacity-80 transition"
+        className="flex items-center space-x-2 text-2xl font-bold whitespace-nowrap hover:opacity-80 transition"
       >
-        QuantBot
+        <Image src="/assets/qb.png" width={48} height={48} alt="QB Logo" />
       </Link>
 
       {/* 가운데: 메뉴 */}
-      <nav className="flex justify-center space-x-8 text-lg font-medium whitespace-nowrap relative">
+      <nav className="flex justify-center space-x-8 whitespace-nowrap relative">
         <div
           className="relative z-10"
           onMouseEnter={onToggleMenu}
@@ -27,6 +28,7 @@ export default function Header({ isMenuOpen, onToggleMenu }: Props) {
         >
           <span className="hover:text-gray-300 cursor-pointer">프로덕트</span>
 
+          {/* 드롭다운 메뉴 */}
           {isMenuOpen && (
             <div
               className="absolute left-1/2 top-full w-48 bg-gray-800 rounded shadow-lg z-50 transition-opacity duration-200"
@@ -77,15 +79,9 @@ export default function Header({ isMenuOpen, onToggleMenu }: Props) {
       </nav>
 
       {/* 오른쪽: 로그인/회원가입 */}
-      <div
-        className={`absolute left-1/2 top-full w-48 bg-gray-800 rounded shadow-lg z-50 transition-opacity duration-200 ${
-          isMenuOpen ? "block" : "hidden"
-        }`}
-        style={{
-          transform: "translateX(-50%)",
-          marginTop: "4px",
-        }}
-      >
+      <div className="flex justify-end space-x-4 pr-30">
+        {" "}
+        {/* ← 여기 pr-20 추가로 Sidebar 피하기 */}
         <Link href="/login" className="hover:text-gray-300">
           로그인
         </Link>
