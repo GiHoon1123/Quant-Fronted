@@ -39,3 +39,5 @@ jobs:
 
             pkill -f "next start" || true
             nohup npm run start > out.log 2>&1 &
+
+            sleep 10
