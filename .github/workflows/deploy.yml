@@ -22,7 +22,7 @@ jobs:
           script: |
             # 최초 클론 혹은 최신 코드 pull
             if [ ! -d "quant-frontend" ]; then
-              git clone https://github.com/GiHoon1123/quant-frontend.git
+              GIT_TERMINAL_PROMPT=0 git clone https://github.com/GiHoon1123/quant-frontend.git            
             fi
 
             cd quant-frontend
