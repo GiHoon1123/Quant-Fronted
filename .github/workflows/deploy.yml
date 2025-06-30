@@ -1,0 +1,38 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SSH and deploy
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            # 최초 클론 혹은 최신 코드 pull
+            if [ ! -d "quant-frontend" ]; then
+              git clone https://github.com/GiHoon1123/quant-frontend.git
+            fi
+
+            cd quant-frontend
+            git pull origin main
+
+            npm install
+            npm run build
+
+            # 기존 프로세스 종료 (있다면)
+            pkill -f "next start" || true
+
+            # 백그라운드 실행
+            nohup npm run start > out.log 2>&1 &
