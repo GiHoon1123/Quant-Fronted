@@ -34,10 +34,16 @@ jobs:
             GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy-key -o StrictHostKeyChecking=no" \
             git pull origin main
 
+            # .env.production 파일 생성
+            echo "NEXT_PUBLIC_BACKEND_API_URL=${{ secrets.BACKEND_API_URL }}" > .env.production
+
             npm install
             npm run build
 
+            # 기존 실행중인 서버 종료
             pkill -f "next start" || true
+
+            # 서버 시작 (백그라운드)
             nohup npm run start > out.log 2>&1 &
 
             sleep 10
