@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Socket } from "socket.io-client";
 import { Kline } from "../types/kline";
 import { Trade } from "../types/trade";
+axios.defaults.headers.common["ngrok-skip-browser-warning"] = "true";
 
 type UseSubscriptionSyncProps = {
   socket: Socket;
@@ -32,9 +33,19 @@ export function useSubscriptionSync({
       console.log("✅ ENV:", process.env.NEXT_PUBLIC_BACKEND_API_URL);
 
       try {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/market-data/watchlist`
-        );
+        const fullUrl = new URL(
+          "market-data/watchlist",
+          process.env.NEXT_PUBLIC_BACKEND_API_URL!
+        ).toString();
+        console.log("🔗 요청 URL:", fullUrl);
+        const res = await axios.get(fullUrl, {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        console.log("📡 [useSubscriptionSync] 심볼 동기화 완료", res.data);
+        console.log("BACKEND_API_URL", process.env.NEXT_PUBLIC_BACKEND_API_URL);
         const newSymbols: string[] = res.data.data.symbols;
 
         const added = newSymbols.filter((s) => !activeRef.current.includes(s));
