@@ -1,10 +1,10 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
-import io from "socket.io-client";
-
 import { CandlestickData, Time } from "lightweight-charts";
+import { useEffect, useState } from "react";
+
+import { getSocket } from "@/common/socket";
 import BtcKlineChart from "../components/BtcKlineChart";
 import BtcTradeList from "../components/BtcTradeList";
 import { useSubscriptionSync } from "../hooks/useSubscriptionSync";
@@ -19,7 +19,7 @@ export default function BtcPage() {
   const [sellTrades, setSellTrades] = useState<Trade[]>([]);
   const [klines, setKlines] = useState<Candle[]>([]);
 
-  const socket = useMemo(() => io("http://localhost:3000"), []);
+  const socket = getSocket(); // ✅ singleton으로 사용
 
   // ✅ 초기 1분봉 데이터 로딩
   useEffect(() => {
@@ -57,20 +57,16 @@ export default function BtcPage() {
     socket,
     onTrade: (_symbol, trade) => {
       if (trade.isBuyerMaker) {
-        // 매도
         setSellTrades((prev) => [...prev, trade].slice(-20));
       } else {
-        // 매수
         setBuyTrades((prev) => [...prev, trade].slice(-20));
       }
     },
     onKline: (_symbol, kline: Kline) => {
       const candle = toCandleData(kline);
-
       setKlines((prev) => {
         const updated = [...prev];
         const last = updated.at(-1);
-
         const candleWithTime = { ...candle, time: candle.time as Time };
 
         if (last && last.time === candleWithTime.time) {
@@ -86,13 +82,10 @@ export default function BtcPage() {
 
   return (
     <main className="main-layout">
-      {/* 왼쪽: 체결 내역 */}
       <section className="trade-section">
         <h1>Bitcoin Trade Ticker (Live)</h1>
         <BtcTradeList buyTrades={buyTrades} sellTrades={sellTrades} />
       </section>
-
-      {/* 오른쪽: 차트 */}
       <section className="chart-section">
         <h1>BTC/USDT</h1>
         <BtcKlineChart klineData={klines} />

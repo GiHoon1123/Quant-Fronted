@@ -21,22 +21,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           isMenuOpen={menuOpen}
           onToggleMenu={() => setMenuOpen((prev) => !prev)}
         />
-        <main
-          className="pr-Prettier pt-4"
-          style={{
-            backgroundImage: "url('/assets/robot.png')",
-            backgroundPosition: "center", // 중앙 배치
-            backgroundRepeat: "no-repeat", // 반복되지 않게 설정
-            backgroundSize: "cover", // 부모 요소를 덮도록 크기 조정
-            height: "100vh", // 화면 전체 크기
-            width: "50vw", // 화면 가로 크기의 50%로 설정
-            margin: "0 auto", // 화면 중앙 정렬
-            transform: "scale(0.5)", // 이미지 크기 50%로 줄이기
-            transformOrigin: "center", // 이미지가 중앙에서 축소되도록 설정
-          }}
-        >
-          {children}
-        </main>
+        <main className="pr-Prettier pt-4">{children}</main>
       </div>
     </>
   );
