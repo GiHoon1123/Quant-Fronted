@@ -18,10 +18,10 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
-          key: ${{ secrets.EC2_DEPLOY }}
+          key: ${{ secrets.EC2_DEPLOY_PRIVATE_KEY }}
           script: |
             # 개인 키 저장
-            echo "${{ secrets.EC2_DEPLOY }}" > ~/.ssh/deploy-key
+            echo "${{ secrets.EC2_DEPLOY_PRIVATE_KEY }}" > ~/.ssh/deploy-key
             chmod 600 ~/.ssh/deploy-key
 
             # git clone (SSH 방식)
