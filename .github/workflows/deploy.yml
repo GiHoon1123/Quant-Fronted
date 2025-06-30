@@ -25,7 +25,7 @@ jobs:
             chmod 600 ~/.ssh/deploy-key
 
             # git clone (SSH 방식)
-            if [ ! -d "Quant-Frontend" ]; then
+            if [ ! -d "quant-frontend" ]; then
               GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy-key -o StrictHostKeyChecking=no" \
               git clone git@github.com:GiHoon1123/Quant-Fronted.git
             fi
